@@ -5,10 +5,8 @@ import { Sparkles, Loader2 } from "lucide-react";
 import { showToast } from "../helper/showToast";
 import { decode } from "entities";
 
-// ⚠️ Move this to .env later
-const genAI = new GoogleGenerativeAI(
-  "AIzaSyDuUDFdCgOK_BLL_VnRCqOV-hDuySdEnyk"
-);
+// Initialize Gemini from environment variables
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyBqXjkeIdh5GOugIit9_KR2OVfDJt9y2cg");
 
 const AISummarizer = ({ content }) => {
   const [summary, setSummary] = useState("");
