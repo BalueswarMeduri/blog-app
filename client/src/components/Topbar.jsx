@@ -93,7 +93,7 @@ const Topbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar className="cursor-pointer">
-                <AvatarImage src={user.user.avatar} />
+                <AvatarImage src={user?.user?.avatar} />
                 <AvatarFallback>U</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
