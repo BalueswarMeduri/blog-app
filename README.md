@@ -45,6 +45,7 @@ This is the easiest and cleanest way to run the full application.
 bash
 mkdir blog-app
 cd blog-app
+
 📄 Step 2: Create docker-compose.yml
 yaml
 services:
@@ -74,19 +75,17 @@ services:
 bash
 docker compose pull
 docker compose up -d
-🌐 Access the Application
+
+🌐 **Access the Application**
 Service	URL
 Website	http://localhost
 Backend API	http://localhost:3000
 🎉 That's it! Blogify is live.
 
-
-
 **Future Enhancements**
-Kubernetes 
-Auto scaling
-Monitoring (Prometheus + Grafana)
-HTTPS with Nginx & SSL
+Kubernetes,
+Auto scaling,
+Monitoring (Prometheus + Grafana),
 
 📦 Docker Hub:
 https://hub.docker.com/u/balumeduri
