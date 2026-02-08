@@ -1,30 +1,23 @@
-version: '3.8'
+version: "3.8"
 
 services:
   api:
     build: ./api
     ports:
       - "3000:3000"
-    environment:
-      - PORT=3000
-      # Production Frontend is on Port 80 (or your domain), not 5173
-      - FRONTEND_URL=http://localhost
-      - MONGO=mongodb+srv://balumeduri6_db_user:balu@cluster0.9my94ye.mongodb.net/blog
-      - JWT_SECRET=balumeduri6
-      - NODE_ENV=development
-      - IMAGEKIT_PUBLIC_KEY=public_xE0aFGjDMlVGwbC/Bpl+BxiXFG4=
-      - IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/gvtp3bpnw
-      - IMAGEKIT_PRIVATE_KEY=private_+BXjevGpYH16k+chHLknOOof37c=
+    env_file:
+      - .env
 
   client:
     build:
       context: ./client
-      # We pass these args so Vite can "bake" them into the HTML/JS
       args:
-        - VITE_BACKEND=http://localhost:3000/api
-        - VITE_FIREBASE_URL=AIzaSyA079sffwaXRq85z9SCu-CtYHdpR2PLeJs
-        - VITE_GEMINI_API_KEY=AIzaSyBqXjkeIdh5GOugIit9_KR2OVfDJt9y2cg
+        VITE_BACKEND: ${VITE_BACKEND}
+        VITE_FIREBASE_URL: ${VITE_FIREBASE_URL}
+        VITE_GEMINI_API_KEY: ${VITE_GEMINI_API_KEY}
     ports:
       - "80:80"
+    env_file:
+      - .env
     depends_on:
       - api
