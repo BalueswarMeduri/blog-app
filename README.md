@@ -1,25 +1,25 @@
 **Blogify – MERN Blog Application**
 Blogify is a full-stack MERN Blog Application built with modern tools and fully Dockerized for production.
 
-**Key Features:**
+**Key Features:** <br>
 Blog creation & editing
 Categories management
 Comments & likes system
 AI-powered content features
 Production-ready Docker setup
 
-**Tech Stack**
+**Tech Stack** <br>
 **Frontend**
 React + Vite
 Tailwind CSS
-Served via Nginx
+Served via Nginx <br>
 
 **Backend**
 Node.js
 Express.js
 MongoDB
 JWT Authentication
-ImageKit (for image uploads)
+ImageKit (for image uploads) <br>
 
 **DevOps**
 Docker & Docker Compose
@@ -29,9 +29,9 @@ Multi-stage builds
 Docker Hub public images
 Production-ready configuration
 
-🐳 **Docker Images (Public)**
+🐳 **Docker Images (Public)** <br>
 🔹 Backend API
-balumeduri/my-blog-api:v1.0
+balumeduri/my-blog-api:v1.0 <br>
 
 🔹 Frontend Client
 balumeduri/my-blog-client:v1.0
@@ -44,9 +44,9 @@ This is the easiest and cleanest way to run the full application.
 📁 Step 1: Create a project folder
 bash
 mkdir blog-app
-cd blog-app
+cd blog-app <br>
 
-📄 Step 2: Create docker-compose.yml
+📄 Step 2: Create docker-compose.yml  <br>
 yaml
 services:
   api:
@@ -74,29 +74,29 @@ services:
 ▶️ Step 3: Pull & Run containers
 bash
 docker compose pull
-docker compose up -d
+docker compose up -d  <br>
 
-🌐 **Access the Application**
-Service	URL
-Website	http://localhost
-Backend API	http://localhost:3000
-🎉 That's it! Blogify is live.
+🌐 **Access the Application** <br>
+Service	URL <br>
+Website	http://localhost <br>
+Backend API	http://localhost:3000 <br>
+🎉 That's it! Blogify is live. <br>
 
-**Future Enhancements**
-Kubernetes,
-Auto scaling,
-Monitoring (Prometheus + Grafana),
+**Future Enhancements** <br>
+Kubernetes, <br>
+Auto scaling, <br>
+Monitoring (Prometheus + Grafana), <br>
 
 📦 Docker Hub:
-https://hub.docker.com/u/balumeduri
+https://hub.docker.com/u/balumeduri <br>
 
-**RUN PRODUCTION**
-docker compose up --build
+**RUN PRODUCTION** 
+docker compose up --build <br>
 
 **Tag the images**
-docker tag blog-api:latest balumeduri/my-blog-api:v1.0
-docker tag blog-client:latest balumeduri/my-blog-client:v1.0
+docker tag blog-api:latest balumeduri/my-blog-api:v1.0   <br>
+docker tag blog-client:latest balumeduri/my-blog-client:v1.0  <br>
 
-**Push to Docker Hub**
-docker push balumeduri/my-blog-api:v1.0
-docker push balumeduri/my-blog-client:v1.0
+**Push to Docker Hub**  
+docker push balumeduri/my-blog-api:v1.0   <br>
+docker push balumeduri/my-blog-client:v1.0   <br>
