@@ -23,6 +23,7 @@ services:
       args:
         - VITE_BACKEND=http://localhost:3000/api
         - VITE_FIREBASE_URL=AIzaSyA079sffwaXRq85z9SCu-CtYHdpR2PLeJs
+        - VITE_GEMINI_API_KEY=AIzaSyBqXjkeIdh5GOugIit9_KR2OVfDJt9y2cg
     ports:
       - "80:80"
     depends_on:
