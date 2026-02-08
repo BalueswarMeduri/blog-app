@@ -89,3 +89,14 @@ Monitoring (Prometheus + Grafana),
 
 📦 Docker Hub:
 https://hub.docker.com/u/balumeduri
+
+**RUN PRODUCTION**
+docker compose up --build
+
+**Tag the images**
+docker tag blog-api:latest balumeduri/my-blog-api:v1.0
+docker tag blog-client:latest balumeduri/my-blog-client:v1.0
+
+**Push to Docker Hub**
+docker push balumeduri/my-blog-api:v1.0
+docker push balumeduri/my-blog-client:v1.0
