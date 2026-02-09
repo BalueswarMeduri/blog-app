@@ -257,7 +257,6 @@ export const search = async (req, res, next)=>{
 
 export const getAllBlogs = async (req, res, next) => {
   try {
-    const user = req.user
     const blog = await Blog.find()
       .populate("author", "name avatar role")
       .populate("category", "name slug")
