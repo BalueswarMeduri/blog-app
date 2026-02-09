@@ -18,12 +18,32 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json())
-app.use(cors({
-    origin : ture,
-    credentials : true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Methods'],
-    methods: ['GET', 'POST','PUT', 'PATCH', 'DELETE', 'OPTIONS']
-}))
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost", 
+  "http://localhost:5173",
+  "https://blog-app-balu.vercel.app",
+  "https://blog-app-blond-sigma-83.vercel.app",
+  "https://blog-app-xj7v-ldx0ms583-balueswarmeduris-projects.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin (like Postman, mobile apps)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS blocked: ${origin}`));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"]
+  })
+);
 
 //route setups
 app.use('/api/auth', Authroute)
