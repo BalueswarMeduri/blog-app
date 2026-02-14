@@ -15,7 +15,6 @@ import AISummarizer from "../components/AISummarizer";
 
 const SingleBlogDetails = () => {
   const { blog, category } = useParams();
-
   const { data, loading, error } = usefetch(
     `${getenv("BACKEND")}/blog/get-blog/${blog}`,
     {

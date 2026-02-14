@@ -9,7 +9,7 @@ BlogRoute.post("/add", authenticate, upload.single("file"), addBlog)
 BlogRoute.get("/edit/:blogid", authenticate, editBlog)
 BlogRoute.put("/update/:blogid", authenticate, upload.single("file"), updateBlog)
 BlogRoute.delete("/delete/:blogid", authenticate, deleteBlog)
-BlogRoute.get("/get-all",authenticate, showallBlog) 
+BlogRoute.get("/get-all",authenticate, showallBlog)  
 
 BlogRoute.get("/get-blog/:slug", getBlog) 
 BlogRoute.get("/get-related-blogs/:category/:blog", getRelatedBlogs)
