@@ -4,6 +4,7 @@ import Blog from "../models/blog.model.js";
 import { encode } from "entities";
 import fs from "fs/promises";
 import Category from "../models/category.model.js";
+import client from "../redis/redisClient.js";
 
 export const addBlog = async (req, res, next) => {
   try {
@@ -148,7 +149,15 @@ export const deleteBlog = async (req, res, next) => {
 };
 
 export const showallBlog = async (req, res, next) => {
+
   try {
+     const cachedBlogs = await client.get("blogs:all")
+    if(cachedBlogs){
+       return res.status(200).json({
+        success: true,
+        blog: JSON.parse(cachedBlogs),
+      })
+    }
     const user = req.user
     let blog;
     if(user.role === 'admin'){
@@ -172,6 +181,8 @@ export const showallBlog = async (req, res, next) => {
       success: true,
       blog,
     });
+    client.set("blogs:all", JSON.stringify(blog));
+    client.expire("blogs:all", 5 * 60);
   } catch (error) {
     next(Handelerror(500, error.message));
   }
@@ -179,6 +190,13 @@ export const showallBlog = async (req, res, next) => {
 
 export const getBlog = async (req, res, next)=>{
   try {
+    const cachedBlog = await client.get(`blog:${req.params.slug}`)
+    if(cachedBlog){
+      return res.status(200).json({
+        success: true,
+        blog: JSON.parse(cachedBlog),
+      })
+    }
     const {slug} = req.params;
     const blog = await Blog.findOne({slug})
       .populate("author", "name avatar role")
@@ -189,6 +207,8 @@ export const getBlog = async (req, res, next)=>{
       success: true,
       blog,
     });
+    client.set(`blog:${slug}`, JSON.stringify(blog));
+    client.expire(`blog:${slug}`, 5 * 60);  
   } catch (error) {
     next(Handelerror(500, error.message));
   }
@@ -257,9 +277,16 @@ export const search = async (req, res, next)=>{
 
 export const getAllBlogs = async (req, res, next) => {
   try {
+    const cachedBlogs = await client.get("blogs:all")
+    if(cachedBlogs){
+       return res.status(200).json({
+        success: true,
+        blog: JSON.parse(cachedBlogs),
+      })
+    }
     const blog = await Blog.find()
       .populate("author", "name avatar role")
-      .populate("category", "name slug")
+      .populate("category", "name slug") 
       .sort({ createdAt: -1 })
       .lean()
       .exec();
@@ -268,6 +295,8 @@ export const getAllBlogs = async (req, res, next) => {
       success: true,
       blog,
     });
+    client.set("blogs:all", JSON.stringify(blog));
+    client.expire("blogs:all", 5 * 60); 
   } catch (error) {
     next(Handelerror(500, error.message));
   }
