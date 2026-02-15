@@ -182,7 +182,7 @@ export const showallBlog = async (req, res, next) => {
       blog,
     });
     client.set("blogs:all", JSON.stringify(blog));
-    client.expire("blogs:all", 5 * 60);
+    client.expire("blogs:all", 24 * 60 * 60);
   } catch (error) {
     next(Handelerror(500, error.message));
   }
@@ -208,7 +208,7 @@ export const getBlog = async (req, res, next)=>{
       blog,
     });
     client.set(`blog:${slug}`, JSON.stringify(blog));
-    client.expire(`blog:${slug}`, 5 * 60);  
+    client.expire(`blog:${slug}`,24 * 60 * 60);  
   } catch (error) {
     next(Handelerror(500, error.message));
   }
@@ -296,7 +296,7 @@ export const getAllBlogs = async (req, res, next) => {
       blog,
     });
     client.set("blogs:all", JSON.stringify(blog));
-    client.expire("blogs:all", 5 * 60); 
+    client.expire("blogs:all", 24 * 60 * 60); 
   } catch (error) {
     next(Handelerror(500, error.message));
   }
